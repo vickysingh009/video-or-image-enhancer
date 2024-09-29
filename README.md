@@ -1,18 +1,18 @@
 # video-or-image-enhancer
 
-# Create a Markdown file with only comparative images
-markdown_content = """
-# Super-Resolution Comparison Results
 
-![result-edsr](docs/images/result-edsr.png)
 
-![result-wdsr](docs/images/result-wdsr.png)
+from model import resolve_single
+from model.edsr import edsr
 
-![result-srgan](docs/images/result-srgan.png)
-"""
+from utils import load_image, plot_sample
 
-# Write the content to a Markdown file
-with open('super_resolution_comparison.md', 'w') as f:
-    f.write(markdown_content)
+model = edsr(scale=4, num_res_blocks=16)
+model.load_weights('weights/edsr-16-x4/weights.h5')
 
-print("Markdown file created successfully!")
+lr = load_image('demo/0851x4-crop.png')
+sr = resolve_single(model, lr)
+
+plot_sample(lr, sr)
+
+
