@@ -2,17 +2,7 @@
 
 
 
-from model import resolve_single
-from model.edsr import edsr
-
-from utils import load_image, plot_sample
-
-model = edsr(scale=4, num_res_blocks=16)
-model.load_weights('weights/edsr-16-x4/weights.h5')
-
-lr = load_image('demo/0851x4-crop.png')
-sr = resolve_single(model, lr)
-
-plot_sample(lr, sr)
+#output
 
 
+![sample](https://github.com/user-attachments/assets/797fff5b-2576-4536-b714-328ef3799650)
